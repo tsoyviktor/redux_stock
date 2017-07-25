@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import PortfolioInputs from './PortfolioInputs';
-import PortfolioList from './PortfolioList';
+import PortfolioInputs from '../containers/AddNewItem';
+import PortfolioList from '../containers/PortfolioList';
 
 export default class PageBody extends Component {
   render () {

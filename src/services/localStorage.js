@@ -21,6 +21,7 @@ export const readState = () => {
     if (state === null) {
       return void 0;
     }
+    return state;
   } catch (err) {
     return void 0;
   }

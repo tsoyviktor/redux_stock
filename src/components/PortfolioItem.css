@@ -1,0 +1,8 @@
+.PortfolioItem {
+    text-transform: uppercase;
+}
+
+.row {
+    display: flex;
+    padding: 20px;
+}
