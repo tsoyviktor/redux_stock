@@ -1,5 +1,6 @@
 import {combineReducers} from 'redux';
+import portfolio from './portfolio';
 
 export default combineReducers({
-  root: (state = {}) => state,
+  portfolio,
 });

@@ -31,7 +31,9 @@ const store = createStore(
 );
 
 
-store.subscribe(throttle(() => writeState(store.getState()), MAX_WRITE_RATE));
+store.subscribe(throttle(() => {
+  writeState({ portfolio: store.getState().portfolio }), MAX_WRITE_RATE
+}));
 
 // TODO : delete this one
 global.store = store;

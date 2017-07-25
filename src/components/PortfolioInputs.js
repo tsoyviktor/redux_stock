@@ -8,6 +8,7 @@ export default class PortfolioInputs extends Component {
         <input type="text" placeholder="Price"/>
         <input type="number" placeholder="Quantity"/>
         <input type="date" />
+        <button> + </button>
       </div>
     );
   }
