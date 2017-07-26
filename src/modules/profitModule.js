@@ -1,4 +1,4 @@
-import {getProfit} from '../services/profitService';
+import {getProfit, getItemProfit} from '../services/profitService';
 import {values} from 'lodash/object';
 
 export const GET_PROFIT_ACTION = 'GET_PROFIT';
@@ -20,6 +20,20 @@ export const getPortfolioProfit = () => {
         payload: profit
       }));
   }
+};
+
+/**
+ * Action creator.
+ * Calculates profit for a single item
+ *
+ * @param {Object} item
+ * @return {function(*)}
+ */
+export const getItemProfitAction = (item) => {
+  return (dispatch) => getItemProfit(item).then((profit) => dispatch({
+    type: GET_PROFIT_ACTION,
+    payload: profit
+  }));
 };
 
 /**

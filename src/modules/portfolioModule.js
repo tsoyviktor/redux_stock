@@ -1,5 +1,5 @@
 import { v4 } from 'uuid';
-import {removeProfitItemAction} from './profitModule';
+import {removeProfitItemAction, getItemProfitAction} from './profitModule';
 
 export const ADD_ITEM_ACTION = 'ADD_ITEM';
 export const REMOVE_ITEM_ACTION = 'REMOVE_ITEM';
@@ -29,17 +29,17 @@ export const removeItemAction = (id) => {
  * Action creator.
  * Add a new Item to the portfolio
  * @param item
- * @return {{type: string, payload: {id: *}}}
+ * @return {function(*)}
  */
 export const addItemAction = (item) => {
-  item.symbol = item.symbol.toUpperCase();
-  return {
-    type: ADD_ITEM_ACTION,
-    payload: {
-      id: v4(),
-      ...item,
-    }
-  }
+  return (dispatch) => {
+    item = {...item, id: v4(), symbol: item.symbol.toUpperCase()};
+    dispatch({
+      type: ADD_ITEM_ACTION,
+      payload: item
+    });
+    getItemProfitAction(item)(dispatch);
+  };
 };
 
 /**

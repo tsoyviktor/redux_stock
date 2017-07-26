@@ -17,13 +17,13 @@ class KEYS {
 const _getProfit = (item, currentPrice) => item.quantity * (currentPrice - item.price);
 
 /**
+ * Fetch stock info and calculate profit
  *
  * @param items
+ * @return {Promise.<*>}
  */
 export async function getProfit(items) {
   const symbols = items.map((item) => item.symbol);
-
-  // TODO: Handle the case when there are multiple items with the same symbol in the folio
   const currentValue = (await fetch(symbols)).reduce((acc, item) => {
     acc[item[KEYS.SYMBOL_KEY]] = item[KEYS.CURRENT_PRICE];
     return acc;
