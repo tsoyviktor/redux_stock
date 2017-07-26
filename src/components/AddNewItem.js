@@ -35,7 +35,7 @@ export default class AddNewItem extends Component {
     const {symbol, price, quantity, date} = this.inputs;
 
     this.props.addItem({
-      symbol: symbol.value,
+      symbol: symbol.value.trim(),
       price: price.value,
       quantity: quantity.value,
       date: date.value,
@@ -58,7 +58,7 @@ export default class AddNewItem extends Component {
                  aria-label="Symbol"
                  aria-invalid={false}
           />
-          <input type="text" placeholder="Price"
+          <input type="number" placeholder="Price"
                  ref={(price) => this.inputs.price = price}
                  aria-required={true}
                  aria-label="Price"

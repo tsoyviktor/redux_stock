@@ -11,6 +11,7 @@ export const removeItemAction = (id) => {
 };
 
 export const addItemAction = (item) => {
+  item.symbol = item.symbol.toUpperCase();
   return {
     type: ADD_ITEM_ACTION,
     payload: {
