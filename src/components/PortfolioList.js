@@ -8,10 +8,12 @@ export default class PortfolioList extends Component {
     items: PropTypes.array.isRequired,
     removeItem: PropTypes.func.isRequired,
     getPortfolioProfit: PropTypes.func.isRequired,
+    profit: PropTypes.object.isRequired,
   };
 
   static defaultProps = {
-    items: []
+    items: [],
+    profit: {}
   };
 
   componentDidMount () {
@@ -22,7 +24,13 @@ export default class PortfolioList extends Component {
     return (
       <div className="PortfolioList">
         {this.props.items.map((item) => {
-          return <PortfolioItem key={item.id} removeItem={this.props.removeItem} item={item} />
+          return (
+            <PortfolioItem key={item.id}
+                           removeItem={this.props.removeItem}
+                           item={item}
+                           stock={this.props.profit[item.id]}
+            />
+          )
         })}
       </div>
     );

@@ -35,9 +35,9 @@ export default class AddNewItem extends Component {
     const {symbol, price, quantity, date} = this.inputs;
 
     this.props.addItem({
-      symbol: symbol.value.trim(),
-      price: price.value,
-      quantity: quantity.value,
+      symbol: symbol.value.trim().toUpperCase(),
+      price: Number(price.value),
+      quantity: Number(quantity.value),
       date: date.value,
     });
 

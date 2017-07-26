@@ -17,19 +17,22 @@ export default class PortfolioItem extends Component {
       quantity: PropTypes.number.isRequired,
       id: PropTypes.string.isRequired,
     }),
-    current: PropTypes.shape({
-      price: PropTypes.number.isRequired,
-      profit: PropTypes.number.isRequired,
+    stock: PropTypes.shape({
+      price: PropTypes.number.isRequired | PropTypes.string.isRequired,
+      profit: PropTypes.number.isRequired | PropTypes.string.isRequired,
     }),
     removeItem: PropTypes.func.isRequired,
   };
 
   static defaultProps = {
-    current: {},
+    stock: {
+      price: '...',
+      profit: '...',
+    },
     item: {},
   };
 
-  removeItem (event) {
+  removeItem () {
     this.props.removeItem(this.props.item.id);
   }
 
@@ -47,8 +50,8 @@ export default class PortfolioItem extends Component {
         </div>
 
         <div className="current row">
-          <p> {this.props.current.price} </p>
-          <p> {this.props.current.profit} </p>
+          <p> {this.props.stock.price} </p>
+          <p> {this.props.stock.profit} </p>
         </div>
 
         <div className="row" onClick={this.removeItem}>

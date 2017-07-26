@@ -1,5 +1,4 @@
 import {fetchOne, fetch} from '../services/APIservice';
-import {values, keys} from 'lodash/object';
 
 /**
  * response JSON keys enum
@@ -19,17 +18,18 @@ const _getProfit = (item, currentPrice) => item.quantity * (currentPrice - item.
 
 /**
  *
- * @param portfolio
+ * @param items
  */
-export async function getProfit(portfolio) {
-  const symbols = values(portfolio).map((item) => item.symbol);
+export async function getProfit(items) {
+  const symbols = items.map((item) => item.symbol);
 
+  // TODO: Handle the case when there are multiple items with the same symbol in the folio
   const currentValue = (await fetch(symbols)).reduce((acc, item) => {
     acc[item[KEYS.SYMBOL_KEY]] = item[KEYS.CURRENT_PRICE];
     return acc;
   }, {});
 
-  return values(portfolio).reduce((acc, item) => {
+  return items.reduce((acc, item) => {
     acc[item.id] = {
       price: currentValue[item.symbol],
       profit: _getProfit(item, currentValue[item.symbol]),
@@ -37,4 +37,13 @@ export async function getProfit(portfolio) {
     return acc;
   }, {});
 
+}
+
+/**
+ * Wrapper for getProfit to process a single item
+ * @param item
+ * @return {Promise.<*>}
+ */
+export async function getItemProfit(item) {
+  return await getProfit([item]);
 }

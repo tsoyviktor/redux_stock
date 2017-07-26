@@ -1,5 +1,4 @@
-import axios from 'axios';
-import json from 'comment-json';
+import jsonp from 'jsonp';
 
 const SERVICE_URL = 'http://finance.google.com/finance/info?q=';
 
@@ -10,5 +9,14 @@ const SERVICE_URL = 'http://finance.google.com/finance/info?q=';
 export const fetch = (symbols=[]) => {
   const queryParams = symbols.map((symbol) => `NASDAQ:${symbol}`);
   const URL = `${SERVICE_URL}${queryParams.join(',')}`;
-  return axios.get(URL).then((response) => json.parse(response.date));
+
+  return new Promise((resolve, reject) => {
+    jsonp(URL, null, (err, data) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data)
+      }
+    })
+  });
 };

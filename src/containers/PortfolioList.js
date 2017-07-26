@@ -14,7 +14,8 @@ const mapDispatchToProps = (dispatch) => {
 
 const mapSateToProps = (state) => {
   return {
-    items: values(state.portfolio)
+    items: values(state.portfolio),
+    profit: state.profit
   }
 };
 
