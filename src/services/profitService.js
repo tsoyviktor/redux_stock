@@ -14,7 +14,9 @@ class KEYS {
  * @param currentPrice
  * @private
  */
-const _getProfit = (item, currentPrice) => item.quantity * (currentPrice - item.price);
+const _getProfit = (item, currentPrice) => {
+  return (item.quantity * (currentPrice - item.price)).toFixed(2);
+};
 
 /**
  * Fetch stock info and calculate profit
@@ -31,7 +33,7 @@ export async function getProfit(items) {
 
   return items.reduce((acc, item) => {
     acc[item.id] = {
-      price: currentValue[item.symbol],
+      price: Number(currentValue[item.symbol]).toPrecision(4),
       profit: _getProfit(item, currentValue[item.symbol]),
     };
     return acc;

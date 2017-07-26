@@ -19,6 +19,7 @@
     "flow-bin": "^0.51.0",
     "jsonp": "^0.2.1",
     "lodash": "^4.17.4",
+    "moment": "^2.18.1",
     "prop-types": "^15.5.10",
     "react-redux": "^5.0.5",
     "redux": "^3.7.2",

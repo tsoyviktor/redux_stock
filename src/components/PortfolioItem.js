@@ -50,8 +50,8 @@ export default class PortfolioItem extends Component {
         </div>
 
         <div className="current row">
-          <p> {this.props.stock.price} </p>
-          <p> {this.props.stock.profit} </p>
+          <p> price: {this.props.stock.price}  </p>
+          <p> profit: {this.props.stock.profit} </p>
         </div>
 
         <div className="row" onClick={this.removeItem}>
